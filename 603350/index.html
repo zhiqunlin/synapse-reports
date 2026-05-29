@@ -3,378 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>安乃达 (603350) Synapse 研报分析</title>
+<title>安乃达(603350) · Synapse 研报深度分析</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0f1923;color:#e0e6ed;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6}
-.nav{position:sticky;top:0;z-index:100;background:#141f2b;border-bottom:1px solid #1e3040;padding:12px 24px;display:flex;gap:24px;align-items:center}
-.nav a{color:#5a9fd4;text-decoration:none;font-size:14px;transition:color 0.2s}
-.nav a:hover{color:#7ab8e8}
-.nav .brand{font-weight:700;font-size:16px;color:#e0e6ed;margin-right:auto}
-.container{max-width:1200px;margin:0 auto;padding:32px 24px}
-h1{font-size:28px;font-weight:700;margin-bottom:8px;color:#fff}
-.subtitle{color:#8899aa;font-size:14px;margin-bottom:32px}
-.card{background:#141f2b;border:1px solid #1e3040;border-radius:12px;padding:24px;margin-bottom:24px}
-.card h2{font-size:20px;color:#5a9fd4;margin-bottom:16px;border-bottom:1px solid #1e3040;padding-bottom:8px}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
-.stat-item{background:#0f1923;border-radius:8px;padding:16px;text-align:center}
-.stat-value{font-size:28px;font-weight:700;color:#5a9fd4}
-.stat-label{font-size:12px;color:#8899aa;margin-top:4px}
-.stat-change{font-size:12px;margin-top:2px}
-.positive{color:#f56c6c}
-.negative{color:#67c23a}
-.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.chart-container{background:#0f1923;border-radius:8px;padding:16px}
-.chart-container.full{grid-column:1/-1}
-.chart-container h3{font-size:14px;color:#8899aa;margin-bottom:8px}
-canvas{max-height:300px}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{text-align:left;padding:10px 12px;background:#0f1923;color:#8899aa;font-weight:600;border-bottom:2px solid #1e3040}
-td{padding:10px 12px;border-bottom:1px solid #1e3040}
-tr:hover{background:#1a2a3a}
-.warning-box{background:#2a1a0a;border:1px solid #8b6914;border-radius:8px;padding:16px;margin-bottom:16px}
-.warning-box .title{color:#e6a817;font-weight:700;margin-bottom:8px}
-.danger-box{background:#2a0a0a;border:1px solid #8b1414;border-radius:8px;padding:16px;margin-bottom:16px}
-.danger-box .title{color:#e64545;font-weight:700;margin-bottom:8px}
-.info-box{background:#0a1a2a;border:1px solid #1e5080;border-radius:8px;padding:16px;margin-bottom:16px}
+body{background:#0f1923;color:#e0e6ed;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6}
+nav{position:sticky;top:0;z-index:100;background:#1a2d3d;border-bottom:1px solid #2a3d4d;padding:12px 24px;display:flex;gap:20px;align-items:center}
+nav a{color:#6b9bd2;text-decoration:none;font-size:14px;transition:color .2s}
+nav a:hover{color:#8bb8e8}
+.container{max-width:1200px;margin:0 auto;padding:24px}
+.header{text-align:center;padding:48px 0 32px}
+.header h1{font-size:32px;color:#fff;margin-bottom:8px}
+.header .sub{color:#8899aa;font-size:14px}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:32px}
+.metric-card{background:#1a2d3d;border-radius:12px;padding:20px;text-align:center;border:1px solid #2a3d4d}
+.metric-card .label{font-size:12px;color:#8899aa;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.metric-card .value{font-size:24px;font-weight:700;color:#fff}
+.metric-card .sub-value{font-size:12px;color:#6b9bd2;margin-top:4px}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px}
+.chart-box{background:#1a2d3d;border-radius:12px;padding:24px;border:1px solid #2a3d3d}
+.chart-box h3{font-size:16px;color:#fff;margin-bottom:16px}
+.chart-box.full{grid-column:1/-1}
+.chart-box canvas{max-height:300px}
+.section{background:#1a2d3d;border-radius:12px;padding:24px;margin-bottom:24px;border:1px solid #2a3d3d}
+.section h2{font-size:20px;color:#fff;margin-bottom:16px;border-bottom:1px solid #2a3d3d;padding-bottom:8px}
+.section h3{font-size:16px;color:#6b9bd2;margin:16px 0 8px}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th{background:#253a4d;color:#8899aa;padding:10px 12px;text-align:left;font-weight:600;font-size:12px;text-transform:uppercase}
+td{padding:10px 12px;border-bottom:1px solid #2a3d3d}
+tr:hover{background:rgba(107,155,210,0.05)}
 .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
-.tag-red{background:#4a1a1a;color:#f56c6c}
-.tag-yellow{background:#4a3a0a;color:#e6a817}
-.tag-green{background:#1a3a1a;color:#67c23a}
-.tag-blue{background:#0a2a4a;color:#5a9fd4}
-.footer{text-align:center;padding:32px 24px;color:#556677;font-size:12px;border-top:1px solid #1e3040;margin-top:48px}
-.footer a{color:#5a9fd4;text-decoration:none}
-.footer-links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:8px}
-@media(max-width:768px){.chart-row{grid-template-columns:1fr}.stats-grid{grid-template-columns:repeat(2,1fr)}}
+.tag-buy{background:rgba(239,68,68,0.2);color:#ef4444}
+.tag-rec{background:rgba(245,158,11,0.2);color:#f59e0b}
+.tag-ok{color:#22c55e}
+.tag-warn{color:#f59e0b}
+.tag-danger{color:#ef4444}
+.warning-box{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:8px;padding:16px;margin:16px 0}
+.warning-box strong{color:#f59e0b}
+.danger-box{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:16px;margin:16px 0}
+.danger-box strong{color:#ef4444}
+.conclusion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.conclusion-card{background:#0f1923;border-radius:8px;padding:20px;border:1px solid #2a3d3d}
+.conclusion-card h4{color:#6b9bd2;margin-bottom:8px}
+footer{text-align:center;padding:32px;color:#556677;font-size:12px}
+footer a{color:#6b9bd2;text-decoration:none}
+footer .links{display:flex;gap:16px;justify-content:center;margin-bottom:8px}
+.red{color:#ef4444}
+.green{color:#22c55e}
+@media(max-width:768px){.charts{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<div class="nav">
-  <span class="brand">🧠 Synapse 研报分析</span>
-  <a href="../">← 索引</a>
-  <a href="./">📊 可视化</a>
-  <a href="report.html">📄 完整报告</a>
-</div>
+<nav>
+<a href="../">← 索引</a>
+<a href="./">📊 可视化</a>
+<a href="report.html">📄 完整报告</a>
+</nav>
 
 <div class="container">
+<div class="header">
 <h1>安乃达 (603350)</h1>
-<p class="subtitle">Synapse Agent6 v5.36 · 2026-05-29 · 电力设备/电机Ⅲ</p>
-
-<!-- KPI Cards -->
-<div class="stats-grid">
-  <div class="stat-item">
-    <div class="stat-value">30.53</div>
-    <div class="stat-label">当前股价(元)</div>
-    <div class="stat-change negative">-4.44%</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-value">35.57</div>
-    <div class="stat-label">总市值(亿)</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-value">32.14x</div>
-    <div class="stat-label">PE(TTM)</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-value">41.61</div>
-    <div class="stat-label">目标价中枢(元)</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-value">3家</div>
-    <div class="stat-label">机构覆盖</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-value">🟢</div>
-    <div class="stat-label">利好兑现状态</div>
-    <div class="stat-change" style="color:#67c23a">未兑现</div>
-  </div>
+<div class="sub">Synapse Agent6 v5.36 · 2026-05-29 · 电力设备 → 电机Ⅱ → 电机Ⅲ</div>
 </div>
 
-<!-- Rating Pie Chart -->
-<div class="card">
-  <h2>机构评级分布</h2>
-  <div class="chart-row">
-    <div class="chart-container">
-      <h3>评级类型</h3>
-      <canvas id="ratingChart"></canvas>
-    </div>
-    <div class="chart-container">
-      <h3>目标价 vs 当前价</h3>
-      <canvas id="targetPriceChart"></canvas>
-    </div>
-  </div>
+<div class="metrics">
+<div class="metric-card"><div class="label">当前股价</div><div class="value">30.53元</div><div class="sub-value">今日 -4.44%</div></div>
+<div class="metric-card"><div class="label">总市值</div><div class="value">35.57亿</div><div class="sub-value">流通13.47亿</div></div>
+<div class="metric-card"><div class="label">PE(TTM)</div><div class="value">32.14</div><div class="sub-value">历史33.6%分位</div></div>
+<div class="metric-card"><div class="label">PB(TTM)</div><div class="value">2.60</div><div class="sub-value">行业27.3%分位</div></div>
+<div class="metric-card"><div class="label">ROE(FY2025)</div><div class="value">8.67%</div><div class="sub-value">行业排名第8/28</div></div>
+<div class="metric-card"><div class="label">综合得分</div><div class="value tag-warn">49.45</div><div class="sub-value">行业均值65.02 · -15.6</div></div>
 </div>
 
-<!-- EPS & PE Charts -->
-<div class="card">
-  <h2>盈利预测对比</h2>
-  <div class="chart-row">
-    <div class="chart-container">
-      <h3>FY2026E EPS 预测 (元)</h3>
-      <canvas id="epsChart"></canvas>
-    </div>
-    <div class="chart-container">
-      <h3>隐含 Forward PE (倍)</h3>
-      <canvas id="peChart"></canvas>
-    </div>
-  </div>
+<div class="charts">
+<div class="chart-box">
+<h3>机构评级分布</h3>
+<canvas id="ratingChart"></canvas>
+</div>
+<div class="chart-box">
+<h3>目标价 vs 当前价</h3>
+<canvas id="targetChart"></canvas>
+</div>
+<div class="chart-box">
+<h3>EPS预测对比 (FY2025E/FY2026E)</h3>
+<canvas id="epsChart"></canvas>
+</div>
+<div class="chart-box">
+<h3>隐含Forward PE</h3>
+<canvas id="peChart"></canvas>
+</div>
+<div class="chart-box">
+<h3>股价区间映射</h3>
+<canvas id="priceRangeChart"></canvas>
+</div>
+<div class="chart-box">
+<h3>利好兑现雷达图</h3>
+<canvas id="fulfillChart"></canvas>
+</div>
 </div>
 
-<!-- PE Distribution -->
-<div class="card">
-  <h2>PE估值映射</h2>
-  <div class="chart-row">
-    <div class="chart-container full">
-      <h3>股价区间映射 (机构预测×PE倍数)</h3>
-      <canvas id="priceMapChart"></canvas>
-    </div>
-  </div>
+<div class="section">
+<h2>核心发现摘要</h2>
+<div class="metrics" style="grid-template-columns:repeat(4,1fr)">
+<div class="metric-card"><div class="label">覆盖机构</div><div class="value">3家</div></div>
+<div class="metric-card"><div class="label">评级分布</div><div class="value">买入2/推荐1</div></div>
+<div class="metric-card"><div class="label">目标价中枢</div><div class="value">41.61元</div><div class="sub-value">潜在空间+36.3%</div></div>
+<div class="metric-card"><div class="label">一致性</div><div class="value tag-warn">CV=0.8%</div><div class="sub-value">⚠️ 仅2家</div></div>
+</div>
+<div class="warning-box">
+<strong>⚠️ 机构覆盖严重不足</strong>：仅3家机构覆盖，2家正文缺失，有效定性覆盖仅1家（华鑫证券）。次新股（上市696天），机构覆盖度天然不足。
+</div>
+<p style="margin-top:16px"><strong>核心共识：</strong>安乃达作为国内少数具备全链条电驱动系统自研能力的企业，受益于电动两轮车行业增长、海外高毛利中置电机业务扩张及"电机+"平台向机器人等新场景延伸。</p>
+<p><strong>关键分歧：</strong>机构覆盖极少，且预测财年不一致（方正tYear=2025 vs 中信/华鑫tYear=2024），无法有效进行跨机构横向对比。</p>
+<p><strong>最值得关注的盲区：</strong>综合得分仅49.45（行业均值65.02），FY2025经营现金流为负值，机构研报均未对此展开讨论。</p>
+<p><strong>利好兑现状态：</strong>🟡 部分兑现——股价近半年-15.6%，远低于目标价中枢41.61元</p>
 </div>
 
-<!-- Risk Radar -->
-<div class="card">
-  <h2>利好兑现与风险雷达</h2>
-  <div class="chart-row">
-    <div class="chart-container">
-      <h3>利好兑现四维评估</h3>
-      <canvas id="fulfillRadar"></canvas>
-    </div>
-    <div class="chart-container">
-      <h3>历史PE分位</h3>
-      <canvas id="pePercentile"></canvas>
-    </div>
-  </div>
+<div class="section">
+<h2>多维度横向对比</h2>
+<table>
+<tr><th>维度</th><th>方正证券</th><th>中信证券</th><th>华鑫证券</th></tr>
+<tr><td>报告日期</td><td>2026-05-03</td><td>2025-10-27</td><td>2025-06-28</td></tr>
+<tr><td>评级</td><td><span class="tag tag-rec">推荐</span></td><td><span class="tag tag-buy">买入</span></td><td><span class="tag tag-buy">买入</span></td></tr>
+<tr><td>目标价</td><td>38.08元</td><td>42.64元</td><td>44.11元</td></tr>
+<tr><td>FY2025E EPS</td><td>—</td><td>1.005</td><td>1.022</td></tr>
+<tr><td>FY2026E EPS</td><td>1.228</td><td>1.108</td><td>1.134</td></tr>
+<tr><td>隐含Forward PE</td><td>31.0x</td><td>42.4x</td><td>43.2x</td></tr>
+<tr><td>数据完整度</td><td>仅数据</td><td>仅数据</td><td>完整</td></tr>
+</table>
 </div>
 
-<!-- Key Findings -->
-<div class="card">
-  <h2>核心发现</h2>
-
-  <div class="info-box">
-    <div class="title">📊 机构共识</div>
-    传统电驱基本盘稳健增长 + "电机+"平台战略切入机器人等新兴场景，海外高毛利中置电机是盈利结构优化的关键。3家机构均给予买入/推荐评级。
-  </div>
-
-  <div class="warning-box">
-    <div class="title">⚠️ 关键分歧</div>
-    盈利增速预期：方正(FY2026E EPS +29%) vs 中信/华鑫(+12-14%)；估值锚定：方正隐含PE 31x vs 中信/华鑫 38-39x。
-  </div>
-
-  <div class="danger-box">
-    <div class="title">🔴 最值得关注的盲区</div>
-    经营现金流恶化（FY2025 CFO/净利润=-1.3%），连续三年恶化趋势。三家机构均未充分强调此风险——属于机构集体盲区。
-  </div>
+<div class="section">
+<h2>股价映射与安全边际</h2>
+<table>
+<tr><th>情景</th><th>EPS(元)</th><th>PE倍数(x)</th><th>股价(元)</th><th>较当前价空间</th></tr>
+<tr><td>保守情景</td><td>1.005</td><td>38.8</td><td>39.03</td><td class="green">+27.9%</td></tr>
+<tr><td>中性情景</td><td>1.014</td><td>43.2</td><td>43.76</td><td class="green">+43.3%</td></tr>
+<tr><td>乐观情景</td><td>1.022</td><td>46.6</td><td>47.66</td><td class="green">+56.1%</td></tr>
+</table>
+<div class="warning-box"><strong>PE失真降权已触发</strong>：行业仅11家成分股，CV=1.48，max/median=5.53。权重调整为：历史PE 55%、行业PE 15%、机构PE 30%。</div>
+<p style="margin-top:12px"><strong>安全边际评估：</strong>当前价30.53元 < 保守价39.03元，处于保守区间下沿，安全边际较高。但需注意仅3家机构覆盖的局限性。</p>
 </div>
 
-<!-- Key Data Table -->
-<div class="card">
-  <h2>机构研报对比</h2>
-  <table>
-    <thead>
-      <tr><th>机构</th><th>日期</th><th>评级</th><th>目标价</th><th>FY2026E EPS</th><th>隐含PE</th><th>完整度</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>方正证券</td><td>2026-05-03</td><td><span class="tag tag-blue">推荐</span></td><td>38.08元</td><td>1.23元</td><td>31.0x</td><td>✅ 完整</td></tr>
-      <tr><td>中信证券</td><td>2025-10-27</td><td><span class="tag tag-green">买入</span></td><td>42.64元</td><td>1.11元</td><td>38.5x</td><td>⚠️ 正文缺失</td></tr>
-      <tr><td>华鑫证券</td><td>2025-06-28</td><td><span class="tag tag-green">买入</span></td><td>44.11元</td><td>1.13元</td><td>38.9x</td><td>✅ 完整</td></tr>
-    </tbody>
-  </table>
+<div class="section">
+<h2>财务健康度与盲区</h2>
+<table>
+<tr><th>检查项</th><th>当前值</th><th>判定</th></tr>
+<tr><td>商誉/总资产</td><td>0.11%</td><td class="tag-ok">✅ OK</td></tr>
+<tr><td>有息负债率</td><td>4.24%</td><td class="tag-ok">✅ OK</td></tr>
+<tr><td>利息保障倍数</td><td>58.08x</td><td class="tag-ok">✅ OK</td></tr>
+<tr><td>应收/营收(年化)</td><td>28.58%</td><td class="tag-warn">⚠️ 偏高</td></tr>
+<tr><td>FY2025 CFO/EPS</td><td>-1.3%</td><td class="tag-danger">🔴 经营现金流为负</td></tr>
+<tr><td>近3年CFO/EPS均值</td><td>112.5%</td><td class="tag-ok">✅ OK</td></tr>
+</table>
+
+<div class="danger-box"><strong>🔴 机构盲区</strong>：综合得分49.45显著低于行业均值65.02，技能分44.22和情绪分42.45均处于行业底部。FY2025经营现金流为负值，但3家机构研报均未对此展开讨论。</div>
 </div>
 
-<!-- Price Scenarios Table -->
-<div class="card">
-  <h2>股价区间映射</h2>
-  <table>
-    <thead>
-      <tr><th>情景</th><th>EPS(元)</th><th>PE(x)</th><th>股价(元)</th><th>较当前空间</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>保守情景</td><td>1.11</td><td>35.4</td><td>39.25</td><td class="positive">+28.6%</td></tr>
-      <tr><td>中性情景</td><td>1.13</td><td>41.7</td><td>47.31</td><td class="positive">+55.0%</td></tr>
-      <tr><td>乐观情景</td><td>1.23</td><td>45.3</td><td>55.65</td><td class="positive">+82.3%</td></tr>
-    </tbody>
-  </table>
+<div class="section">
+<h2>反方观点与风险扫描</h2>
+<table>
+<tr><th>风险信号</th><th>现状</th><th>严重程度</th></tr>
+<tr><td>融资融券</td><td>余额1.36亿，10日变化+1.5%</td><td>⚪ 温和</td></tr>
+<tr><td>高管减持</td><td>无记录</td><td>⚪ 无风险</td></tr>
+<tr><td>股权质押</td><td>无记录</td><td>⚪ 无风险</td></tr>
+<tr><td>违规处罚</td><td>2025-07年报问询函（监管关注）</td><td>⚪ 低风险</td></tr>
+<tr><td>负面新闻</td><td>近30天多条板块下跌+Q1业绩双降</td><td class="tag-warn">⚠️ 舆情偏负面</td></tr>
+<tr><td>经营现金流</td><td>FY2025为负</td><td class="tag-danger">🔴 利润含金量不足</td></tr>
+<tr><td>毛利率</td><td>15.53%，低位运行</td><td class="tag-warn">⚠️ 盈利能力薄弱</td></tr>
+</table>
 </div>
 
-<!-- Footer -->
-<div class="footer">
-  <p>Synapse Agent6 v5.36 · 安乃达 (603350) · 2026-05-29</p>
-  <p style="margin-top:4px;color:#667788">⚠️ 本报告不构成任何投资建议。所有分析基于公开数据和机构研报。</p>
-  <div class="footer-links">
-    <a href="report.html">📄 完整MD报告</a>
-    <a href="安乃达_synapse.md">📝 Markdown原文</a>
-    <a href="https://github.com/zhiqunlin/synapse-reports">🔗 GitHub仓库</a>
-  </div>
+<div class="section">
+<h2>综合结论</h2>
+<div class="conclusion-grid">
+<div class="conclusion-card"><h4>📊 机构覆盖广度</h4><p>差 — 仅3家，次新股（696天），2家正文缺失。建议关注后续覆盖密度变化。</p></div>
+<div class="conclusion-card"><h4>📈 研报增量价值</h4><p>低 — 最新报告正文缺失，2家报告距今超7个月。机构逻辑尚未被充分定价但信息增量有限。</p></div>
+<div class="conclusion-card"><h4>🎯 预测可信度</h4><p>中 — 中信/华鑫FY2025 EPS预测偏差仅+1.5%/+3.2%，准确度较高；但报告时效性差。</p></div>
+<div class="conclusion-card"><h4>⚡ 市场定价效率</h4><p>低效 — 股价-15.6%而机构逻辑未变，市场可能过度担忧短期盈利质量。</p></div>
 </div>
+</div>
+
+<footer>
+<div class="links">
+<a href="report.html">📄 完整MD报告</a>
+<a href="安乃达_synapse.md">📝 Markdown原文</a>
+<a href="https://github.com/zhiqunlin/synapse-reports">🔗 GitHub仓库</a>
+</div>
+<div>Synapse Agent6 v5.36 · 2026-05-29 · 数据来源：investoday-api · 不构成投资建议</div>
+</footer>
 </div>
 
 <script>
-// Rating Pie
-new Chart(document.getElementById('ratingChart'), {
-  type: 'doughnut',
-  data: {
-    labels: ['买入', '推荐'],
-    datasets: [{
-      data: [2, 1],
-      backgroundColor: ['#67c23a', '#5a9fd4'],
-      borderColor: '#141f2b',
-      borderWidth: 2
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: { legend: { labels: { color: '#8899aa' } } }
-  }
-});
+Chart.defaults.color='#8899aa';
+Chart.defaults.borderColor='#2a3d3d';
 
-// Target Price Bar
-new Chart(document.getElementById('targetPriceChart'), {
-  type: 'bar',
-  data: {
-    labels: ['方正证券', '中信证券', '华鑫证券', '当前价'],
-    datasets: [{
-      label: '价格(元)',
-      data: [38.08, 42.64, 44.11, 30.53],
-      backgroundColor: ['#5a9fd4', '#5a9fd4', '#5a9fd4', '#f56c6c'],
-      borderColor: '#141f2b',
-      borderWidth: 1
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: { legend: { display: false } },
-    scales: {
-      y: { beginAtZero: false, min: 20, grid: { color: '#1e3040' }, ticks: { color: '#8899aa' } },
-      x: { ticks: { color: '#8899aa' } }
-    }
-  }
-});
+new Chart(document.getElementById('ratingChart'),{type:'doughnut',data:{labels:['买入','推荐'],datasets:[{data:[2,1],backgroundColor:['#ef4444','#f59e0b'],borderWidth:0}]},options:{plugins:{legend:{position:'bottom'}}}});
 
-// EPS Chart
-new Chart(document.getElementById('epsChart'), {
-  type: 'bar',
-  data: {
-    labels: ['方正证券', '中信证券', '华鑫证券'],
-    datasets: [{
-      label: 'FY2026E EPS(元)',
-      data: [1.2275, 1.1081, 1.1339],
-      backgroundColor: '#5a9fd4',
-      borderColor: '#141f2b',
-      borderWidth: 1
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: { labels: { color: '#8899aa' } },
-      annotation: {
-        annotations: {
-          line1: { type: 'line', yMin: 0.95, yMax: 0.95, borderColor: '#f56c6c', borderWidth: 1, borderDash: [5,5], label: { content: 'TTM EPS 0.95', enabled: true } }
-        }
-      }
-    },
-    scales: {
-      y: { beginAtZero: false, min: 0.8, grid: { color: '#1e3040' }, ticks: { color: '#8899aa' } },
-      x: { ticks: { color: '#8899aa' } }
-    }
-  }
-});
+new Chart(document.getElementById('targetChart'),{type:'bar',data:{labels:['方正证券','中信证券','华鑫证券','当前股价'],datasets:[{label:'目标价(元)',data:[38.08,42.64,44.11,30.53],backgroundColor:['#6b9bd2','#6b9bd2','#6b9bd2','#ef4444'],borderRadius:6}]},options:{plugins:{legend:{display:false}}}});
 
-// Implied PE
-new Chart(document.getElementById('peChart'), {
-  type: 'bar',
-  data: {
-    labels: ['方正证券', '中信证券', '华鑫证券', '当前PE'],
-    datasets: [{
-      label: 'Forward PE',
-      data: [31.0, 38.5, 38.9, 32.1],
-      backgroundColor: ['#5a9fd4', '#5a9fd4', '#5a9fd4', '#e6a817'],
-      borderColor: '#141f2b',
-      borderWidth: 1
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: { legend: { display: false } },
-    scales: {
-      y: { beginAtZero: false, min: 25, grid: { color: '#1e3040' }, ticks: { color: '#8899aa' } },
-      x: { ticks: { color: '#8899aa' } }
-    }
-  }
-});
+new Chart(document.getElementById('epsChart'),{type:'bar',data:{labels:['中信 FY25E','华鑫 FY25E','方正 FY26E','中信 FY26E','华鑫 FY26E'],datasets:[{label:'EPS(元)',data:[1.005,1.022,1.228,1.108,1.134],backgroundColor:['#6b9bd2','#6b9bd2','#22c55e','#22c55e','#22c55e'],borderRadius:6}]},options:{plugins:{legend:{display:false}}}});
 
-// Price Map
-new Chart(document.getElementById('priceMapChart'), {
-  type: 'bar',
-  data: {
-    labels: ['保守情景', '中性情景', '乐观情景'],
-    datasets: [
-      { label: '股价下限(元)', data: [39.25, 47.31, 55.65], backgroundColor: '#5a9fd4' },
-      { label: '当前股价', data: [30.53, 30.53, 30.53], backgroundColor: '#f56c6c', borderWidth: 0, type: 'line', borderColor: '#f56c6c', fill: false, pointRadius: 5 }
-    ]
-  },
-  options: {
-    responsive: true,
-    plugins: { legend: { labels: { color: '#8899aa' } } },
-    scales: {
-      y: { beginAtZero: false, min: 25, grid: { color: '#1e3040' }, ticks: { color: '#8899aa' } },
-      x: { ticks: { color: '#8899aa' } }
-    }
-  }
-});
+new Chart(document.getElementById('peChart'),{type:'bar',data:{labels:['方正','中信','华鑫'],datasets:[{label:'隐含Forward PE',data:[31.0,42.4,43.2],backgroundColor:'#f59e0b',borderRadius:6}]},options:{plugins:{legend:{display:false}}}});
 
-// Fulfill Radar
-new Chart(document.getElementById('fulfillRadar'), {
-  type: 'radar',
-  data: {
-    labels: ['涨幅透支率', '预期反应率', '量价匹配度', '资金兑现率'],
-    datasets: [{
-      label: '利好兑现度',
-      data: [20, 30, 45, 30],
-      backgroundColor: 'rgba(90,159,212,0.2)',
-      borderColor: '#5a9fd4',
-      borderWidth: 1,
-      pointBackgroundColor: '#5a9fd4'
-    }]
-  },
-  options: {
-    responsive: true,
-    scales: {
-      r: {
-        beginAtZero: true, max: 100,
-        grid: { color: '#1e3040' },
-        pointLabels: { color: '#8899aa' },
-        ticks: { display: false }
-      }
-    },
-    plugins: { legend: { labels: { color: '#8899aa' } } }
-  }
-});
+new Chart(document.getElementById('priceRangeChart'),{type:'bar',data:{labels:['保守','中性','乐观'],datasets:[{label:'股价区间(元)',data:[39.03,43.76,47.66],backgroundColor:['#6b9bd2','#22c55e','#ef4444'],borderRadius:6},{label:'当前价',data:[30.53,30.53,30.53],type:'line',borderColor:'#ef4444',borderWidth:2,pointRadius:4,fill:false}]},options:{plugins:{legend:{display:false}}}});
 
-// PE Percentile
-new Chart(document.getElementById('pePercentile'), {
-  type: 'bar',
-  data: {
-    labels: ['P10', 'P25', '当前', 'P50', 'P75', 'P90'],
-    datasets: [{
-      label: 'PE',
-      data: [28.8, 32.3, 32.1, 36.0, 38.4, 42.9],
-      backgroundColor: ['#5a9fd4', '#5a9fd4', '#f56c6c', '#5a9fd4', '#5a9fd4', '#5a9fd4'],
-      borderColor: '#141f2b',
-      borderWidth: 1
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: { legend: { display: false } },
-    scales: {
-      y: { beginAtZero: false, min: 25, grid: { color: '#1e3040' }, ticks: { color: '#8899aa' } },
-      x: { ticks: { color: '#8899aa' } }
-    }
-  }
-});
+new Chart(document.getElementById('fulfillChart'),{type:'radar',data:{labels:['涨幅透支','预期反应','量价匹配','资金兑现','机构覆盖'],datasets:[{label:'兑现度',data:[20,30,40,30,10],backgroundColor:'rgba(107,155,210,0.2)',borderColor:'#6b9bd2',borderWidth:2,pointBackgroundColor:'#6b9bd2'}]},options:{scales:{r:{min:0,max:100,ticks:{stepSize:20,backdropColor:'transparent'}},plugins:{legend:{display:false}}}}});
 </script>
 </body>
 </html>

@@ -9,20 +9,19 @@
 body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:#f0f2f5;color:#1a1a2e}
 .container{max-width:900px;margin:0 auto;padding:40px 20px}
 .header{text-align:center;margin-bottom:40px}
-.header h1{font-size:28px;background:linear-gradient(135deg,#1a1a2e,#0f3460);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header h1{font-size:28px;background:linear-gradient(135deg,#1a1a2e,#0f3460);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .header p{color:#888;font-size:14px;margin-top:6px}
 .report-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.report{background:#fff;border-radius:10px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:transform .15s;text-decoration:none;color:inherit}
+.report{background:#fff;border-radius:10px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:transform .15s;text-decoration:none;color:inherit;display:block}
 .report:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
 .report .code{font-size:12px;color:#888;margin-bottom:4px}
 .report .name{font-size:18px;font-weight:700;color:#1a1a2e;margin-bottom:8px}
-.report .meta{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:#666}
-.report .meta span{background:#f0f2f5;padding:2px 8px;border-radius:4px}
+.report .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.report .meta span{background:#f0f2f5;padding:2px 8px;border-radius:4px;font-size:12px;color:#666}
 .report .price{font-size:20px;font-weight:700;color:#0f3460;margin-top:8px}
-.report .price .chg{font-size:13px;font-weight:400}
-.report .chg.down{color:#d63031}.report .chg.up{color:#00b894}
+.report .links{display:flex;gap:6px;margin-top:6px}
+.link-btn{font-size:12px;padding:3px 10px;border-radius:4px;background:#0984e3;color:#fff;text-decoration:none}
 .footer{text-align:center;color:#888;font-size:12px;padding:30px;margin-top:20px}
-.empty{text-align:center;color:#888;padding:40px;font-size:15px}
 @media(max-width:600px){.report-list{grid-template-columns:1fr}}
 </style>
 </head>
@@ -32,25 +31,22 @@ body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:#f0f2f5;c
 <h1>Synapse Reports</h1>
 <p>机构研报深度分析 · 多维度横向对比 · 分歧与盲区识别</p>
 </div>
-
 <div class="report-list">
-
 <a href="603350/" class="report">
-<div class="code">603350.SH · 电力设备/电机Ⅲ</div>
+<div class="code">603350.SH</div>
 <div class="name">安乃达</div>
 <div class="meta">
-<span>3家机构覆盖</span>
-<span>目标₵42.64</span>
+<span>3家机构</span>
 <span>PE 33.64x</span>
 </div>
-<div class="price">¥31.04 <span class="chg down">-2.85%</span></div>
+<div class="links">
+<a href="603350/" class="link-btn">📊 可视化</a>
+<a href="603350/安乃达_synapse.md" class="link-btn" style="background:#f0f0f0;color:#555">📄 MD全文</a>
+</div>
+
 </a>
-
 </div>
-
-<div class="footer">
-<p>Synapse Agent6 · Powered by investoday-api · ⚠️ 所有分析不构成投资建议</p>
-</div>
+<div class="footer"><p>Synapse Agent6 · Powered by investoday-api · ⚠️ 不构成投资建议</p></div>
 </div>
 </body>
 </html>

@@ -32,6 +32,15 @@ tr:hover{background:#1a2a3a}
 .blindspot{background:#ef444410;border:1px solid #ef444433;border-radius:8px;padding:15px;margin:10px 0}
 .blindspot h4{color:#ef4444}
 .footer{text-align:center;padding:30px;color:#666;font-size:.85em;border-top:1px solid #2a3a4a;margin-top:30px}
+.top-nav{background:#1a2a3a;border-bottom:1px solid #2a3a4a;padding:10px 20px;display:flex;gap:12px;align-items:center;position:sticky;top:0;z-index:10}
+.top-nav a{color:#888;text-decoration:none;font-size:.85em;padding:4px 10px;border-radius:4px;transition:all .15s}
+.top-nav a:hover{color:#fff;background:#2a3a4a}
+.top-nav a.active{color:#ff6b35;background:#ff6b3520}
+.appendix{background:#1a2a3a;border-radius:10px;padding:20px;margin:20px 0}
+.appendix h3{color:#ff6b35;margin-bottom:12px}
+.appendix .link-row{display:flex;gap:12px;flex-wrap:wrap}
+.appendix .link-row a{background:#2a3a4a;color:#e0e0e0;padding:8px 16px;border-radius:6px;text-decoration:none;font-size:.9em;transition:all .15s}
+.appendix .link-row a:hover{background:#ff6b35;color:#fff}
 .section-title{color:#ff6b35;font-size:1.4em;margin:30px 0 15px;padding-bottom:10px;border-bottom:2px solid #2a3a4a}
 </style>
 </head>
@@ -40,6 +49,12 @@ tr:hover{background:#1a2a3a}
 <h1>厦门钨业 600549</h1>
 <p class="sub">Synapse Agent6 v5.31.2 · 机构研报深度分析 · 2026-05-29</p>
 <div class="price-badge">¥55.02 | PE 27.42 | 市值 873亿</div>
+</div>
+
+<div class="top-nav">
+<a href="../">← 索引</a>
+<a href="./" class="active">📊 可视化</a>
+<a href="report.html">📄 完整报告</a>
 </div>
 
 <div class="container">
@@ -88,6 +103,16 @@ tr:hover{background:#1a2a3a}
 <div class="section-title">利好兑现 · 四维判定</div>
 <div class="chart-row">
 <div class="chart-box full-width"><h3>兑现状态：🟡 部分兑现</h3><canvas id="fulfillChart"></canvas></div>
+</div>
+
+<div class="appendix">
+<h3>📎 附录</h3>
+<div class="link-row">
+<a href="report.html">📄 完整 Markdown 研报</a>
+<a href="https://docs.qq.com/markdown/DU0FKaFVRak5uaWVU" target="_blank">📋 腾讯文档 Markdown</a>
+<a href="https://docs.qq.com/aio/DU1FJbnBkaktTTVRR" target="_blank">📊 SmartCanvas</a>
+<a href="https://github.com/zhiqunlin/synapse-reports" target="_blank">🐙 GitHub</a>
+</div>
 </div>
 
 <div class="footer">

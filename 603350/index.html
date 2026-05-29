@@ -49,7 +49,7 @@ th{color:#90a4ae;font-weight:500;font-size:13px}
 </nav>
 <div class="container">
 <h1>安乃达 (603350.SH)</h1>
-<p class="subtitle">Synapse Agent6 v5.34 · 2026-05-29 · 3家机构覆盖 · 当前价 ¥30.53</p>
+<p class="subtitle">Synapse Agent6 v5.36 · 2026-05-29 · 3家机构覆盖 · 当前价 ¥30.53</p>
 
 <!-- KPI Cards -->
 <div class="cards">
@@ -137,7 +137,7 @@ new Chart(document.getElementById('chartTarget'), {
   data: {
     labels: ['方正证券', '中信证券', '华鑫证券', '当前价', '均价'],
     datasets: [{
-      data: [38.08, 42.64, 44.11, 30.53, 41.61],
+      data: [38.08, 42.64, 44.11, 30.53, 41.11, 51.03, 41.61],
       backgroundColor: ['#2196f3', '#4caf50', '#81c784', '#ef5350', '#ff9800'],
       borderWidth: 0
     }]
@@ -195,7 +195,7 @@ new Chart(document.getElementById('chartPriceRange'), {
     labels: ['保守情景', '中性情景', '乐观情景', '当前价'],
     datasets: [{
       label: '股价区间',
-      data: [46.75, 59.02, 71.54, 30.53],
+      data: [41.11, 51.03, 60.29, 30.53],
       backgroundColor: ['#4caf50', '#2196f3', '#ff9800', '#ef5350'],
       borderWidth: 0
     }]
@@ -203,7 +203,7 @@ new Chart(document.getElementById('chartPriceRange'), {
   options: {
     plugins: {
       tooltip: { callbacks: { label: ctx => '¥' + ctx.raw.toFixed(2) } },
-      subtitle: { display: true, text: '基于FY2026E EPS × 综合加权PE', color: '#90a4ae' }
+      subtitle: { display: true, text: '基于FY2026E EPS × 综合加权PE (v5.36 PE失真触发: 55/15/30)', color: '#90a4ae' }
     }
   }
 });
